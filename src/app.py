@@ -4,7 +4,7 @@ import plotly.express as px
 import pandas as pd
 
 # Load the combined DataFrame
-df = pd.read_csv('../combined_importances.csv')
+df = pd.read_csv('combined_importances.csv')
 
 
 # Initialize the Dash app
