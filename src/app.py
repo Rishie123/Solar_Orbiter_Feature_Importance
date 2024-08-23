@@ -4,7 +4,7 @@ import plotly.express as px
 import pandas as pd
 
 # Load the combined DataFrame
-df = pd.read_csv('combined_importances.csv')
+df = pd.read_csv('combined_shap_values.csv')
 
 
 # Initialize the Dash app
@@ -26,7 +26,7 @@ def prepare_data(df, type_label):
 # Create Plotly Express graphs for each type
 def create_figure(data, title):
     fig = px.area(data, title=title)
-    fig.update_layout(yaxis_title='Normalized Importance', xaxis_title='Time of Profile')
+    fig.update_layout(yaxis_title='Normalized Importance', xaxis_title='Time of Heater Profile(sec)')
     return fig
 
 # Types to include in the dashboard
