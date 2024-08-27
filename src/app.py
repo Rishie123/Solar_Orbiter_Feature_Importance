@@ -6,7 +6,7 @@ import plotly.express as px
 import pandas as pd
 
 # Load the combined DataFrame
-df = pd.read_csv('combined_feature_importance.csv')
+df = pd.read_csv('../combined_importances.csv')
 
 
 # Initialize the Dash app
@@ -19,15 +19,16 @@ def prepare_data(df, type_label):
     df_filtered = df[df['Type'] == type_label]
     # Create pivot table
     pivot_df = df_filtered.pivot_table(
-            values='Normalized_Importance', index='Duration', columns='Feature', aggfunc='sum')
+        values='Normalized_Importance', index='ds_duration', columns='Feature', aggfunc='sum')
     # Filter out columns where all values are zero
     pivot_df = pivot_df.loc[:, (pivot_df != 0).any(axis=0)]
     return pivot_df
 
+
 # Create Plotly Express graphs for each type
 def create_figure(data, title):
-    fig = px.line(data, title=title)  # Change from area to line plot
-    fig.update_layout(yaxis_title='Average Treatment Effect', xaxis_title='Time of Profile')
+    fig = px.area(data, title=title)
+    fig.update_layout(yaxis_title='Normalized Importance', xaxis_title='Time of Profile')
     return fig
 
 # Types to include in the dashboard
