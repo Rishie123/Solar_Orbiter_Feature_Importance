@@ -1,4 +1,4 @@
-t#!/bin/bash
+#!/bin/bash
 
 import dash
 from dash import dcc, html
